@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Kanit';
+            background-color: #0F1016;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            color: #EBECF0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form2 {
+                        background-color: #0F1016;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #content {
+            display: none;            width: 100%;
+        }
+        .formula {
+            width: 100%;
+        }
+        .container{
+            background-color: #0F1016;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #383c6480;
+            margin: auto;
+            margin-bottom: 40px;
+            width: 90%;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.507);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: none;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlaytitle{
+            font-size: 30px;
+        }
+        .img2{
+            width: 100px;
+            border-radius: 20px;
+        }
+        .containlayer2{
+        }
+
+        .inputcontain{
+            margin: 30px 50px 30px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .inputcontain2{
+            margin: 20px 50px 20px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .inptdisable{
+            display: none;
+        }
+        .custlabel {
+            display: block;
+            font-weight: 700;
+            background-color: #352667;
+            border: none;
+            border-radius: 20px;
+            width: 50%;
+            padding: 10px 0px 10px 0px;
+            text-align: center;
+            box-shadow: 0 5px 0 #312b61de;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        .custlabel:hover {
+            opacity: 0.8;
+        }
+
+        .custlabel:active {
+            translate: 0px 5px;
+            box-shadow: none;
+        }
+
+        .lblcont{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .passinpt{
+            text-align: center;
+            border-radius: 100px;
+            border: none;
+            color: #ebe9fc;
+            background-color: #5B50BA;
+            padding: 13px 20px 13px 20px;
+            box-shadow: 0px 5px 0 #403985;
+            transition: all 0.5s;
+        }
+
+        .passinpt:hover{
+            background-color: #403985;
+            box-shadow: 0 5px 0 #322c66;
+        }
+
+        .passinpt:active{
+            opacity: 0.8;
+        }
+
+        .imptbutton {
+            display: block;
+            font-weight: 700;
+            background-color: #4b3b81;
+            color: #ebe9fc;
+            border: none;
+            border-radius: 20px;
+            width: 20%;
+            padding: 10px 0px 10px 0px;
+            text-align: center;
+            box-shadow: 0 5px 0 #413a75de;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+
+        .imptbutton:hover {
+            opacity: 0.8;
+        }
+
+        .imptbutton:active {
+            translate: 0px 5px;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <form class="form2" method="POST" action="">
+                    <h2>Login</h2>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" name="submit" value="Login">
+            </form>
+
+    
+    <script>
+        // JavaScript to handle overlay fading
+        window.onload = function() {
+            var overlay = document.getElementById('overlay');
+            setTimeout(function() {
+                overlay.style.opacity = 0;
+                setTimeout(function() {
+                    overlay.style.display = 'none';
+                }, 3000); // Wait for the fade-out transition to complete before hiding
+            }, 1000); // 3000 milliseconds = 3 seconds
+        };
+    </script>
+
+<script>
+        // Function to update file input labels
+        function updateFileName(input) {
+            input.addEventListener('change', function () {
+                const fileName = input.files[0].name;
+                const label = input.previousElementSibling; // Get the label element
+                if (fileName.length > 15) {
+                    label.textContent = fileName.substring(0, 15) + '...';
+                } else {
+                    label.textContent = fileName;
+                }
+            });
+        }
+
+        // Update file input labels for p12, mobprov, and ipa inputs
+        const p12Input = document.getElementById('p12');
+        const mobProvInput = document.getElementById('mobprov');
+        const ipaInput = document.getElementById('ipa');
+
+        updateFileName(p12Input);
+        updateFileName(mobProvInput);
+        updateFileName(ipaInput);
+    });
+</script>
+
+</body>
+</html>
